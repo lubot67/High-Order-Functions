@@ -1,46 +1,35 @@
 //define functions and global variables here...
-var siteloc = "http://myeskwela.msuiit.edu.ph/test";
+var siteloc = "http://localhost/High-Order-Functions";
 var scriptloc = "/scripts/"
 
-function fetchgradesheet()
+ 
+function square()
 {
   $.ajax({
-      url: siteloc + scriptloc + "getgradesheet.py",
-      data: {course:$("#subject").val(),
-             section:$("#section").val(),
-             semid:$("#semester").val()},
-      dataType: 'json',
-      success: function (res) {
-                  console.log(res);
-                  if(res[0][0] != "None")
-                  {
-				      table = '<div class="table-responsive">';
-					  table += '<table class="table table-condensed">';
-					  table += '<thead>' +
-					           '<tr>' +
-							     '<th>ID No.</th>' +
-								 '<th>Prelim</th>' +
-								 '<th>Midterm</th>' +
-								 '<th>Finals</th>' +
-							   '</tr>' +
-					           '</thead>';
-					  table += "<tbody>";		   
-					  for (i = 0; i < res.length; i++)
-					  {
-						  row = res[i];
-						  table += "<tr>";
-						  for (j = 0; j < row.length; j++)
-						  {
-							  table += "<td>" + row[j] + "</td>";
-						  }
-						  table += "</tr>";
-					  }
-					  table += "</tbody>";
-					  table += "</table>";
-					  table += "</div>";
-					  $("#target").html(table); 
-				  } // end if
-              }
+      url: siteloc + scriptloc + "square.py",
+      data: {value:$("#value").val(),
+             },
+      success: function (res) { 
+	              $("p").html("<br>");
+                  $("p").append(res); 
+                 
+                  
+       }  
     });
 }
 
+function cube()
+{
+  $.ajax({
+      url: siteloc + scriptloc + "cube.py",
+      data: {value:$("#value").val(),
+             }, 
+      success: function (res) {
+				  
+	              $("p").html("<br>");
+                  $("p").append(res); 
+
+       } 
+    });
+}
+  
